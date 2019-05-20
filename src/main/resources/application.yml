@@ -1,5 +1,5 @@
 server:
-  port: 8181
+  port: 8081
   compression:
     enabled: true
     min-response-size: 1KB
@@ -12,3 +12,24 @@ server:
       pattern: '%t %I %r %s %b %D'
   servlet:
     context-path: /apitest
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  datasource:
+    url: jdbc:h2:file:~/Course/H2/course-db;DB_CLOSE_DELAY=10;AUTO_RECONNECT=TRUE;CIPHER=AES;
+    username: admin
+    password: 'x x'
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.format_sql: true
+      hibernate.generate_statistics: true
+    open-in-view: false
+
