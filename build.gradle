@@ -17,5 +17,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+configurations {
+    implementation {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        //exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        //exclude group: 'junit', module: 'junit' // excluded junit4
+    }
 }
