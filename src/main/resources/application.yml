@@ -1,0 +1,14 @@
+server:
+  port: 8181
+  compression:
+    enabled: true
+    min-response-size: 1KB
+  http2:
+    enabled: true
+  undertow:
+    accesslog:
+      enabled: true
+      dir: undertow-accesslog
+      pattern: '%t %I %r %s %b %D'
+  servlet:
+    context-path: /apitest
