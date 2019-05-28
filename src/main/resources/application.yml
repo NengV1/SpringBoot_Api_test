@@ -20,16 +20,40 @@ spring:
       path: /h2
 
   datasource:
-    url: jdbc:h2:file:~/Course/H2/course-db;DB_CLOSE_DELAY=10;AUTO_RECONNECT=TRUE;CIPHER=AES;
+    url: jdbc:h2:file:~/Course/H2/course-db;DB_CLOSE_DELAY=10;AUTO_RECONNECT=TRUE;CIPHER=AES;DB_CLOSE_ON_EXIT=FALSE;
     username: admin
     password: 'x x'
 
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
+  hibernate:
+    ddl-auto: create-drop
     properties:
-      hibernate.format_sql: true
-      hibernate.generate_statistics: true
+      hibernate.format_sql: false
+      hibernate.generate_statistics: false
+      hibernate.query.immutable_entity_update_query_handling_mode: exception
     open-in-view: false
 
+
+  profiles:
+    active: dev
+    #include: optional
+
+custom:
+  name: neng
+
+---
+spring:
+  profiles: dev
+custom:
+  name: neng-dev
+  email: neng@gmail.com
+---
+spring:
+  profiles: test
+custom:
+  name: neng-test
+  email: neng@gm
+---
+spring:
+  profiles: optional
+custom:
+  tel: 0972232555

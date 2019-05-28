@@ -53,14 +53,37 @@ Configutation:
     AsyncLogger:
       - name: com.ss.springbootgo.springboot_test
         additivity: false
-        level: info
+        level: debug
         includeLocation: false
         AppenderRef:
           - ref: Console_Appender
           - ref: RollingRandomAccessFile_Appender
 
-      - name: org.hibernate.engine.internal.StatisticalLoggingSessionEventListener
+      - name: org.hibernate.engine.internal
         level: info
+        additivity: false
+        AppenderRef:
+          - ref: Console_Appender
+          - ref: RollingRandomAccessFile_Appender
+
+      - name: org.springframework.boot.web.servlet
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: Console_Appender
+          - ref: RollingRandomAccessFile_Appender
+
+      # show sql
+      - name: org.hibernate.SQL
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: Console_Appender
+          - ref: RollingRandomAccessFile_Appender
+
+      # show binding params
+      - name: org.hibernate.type
+        level: off #trace
         additivity: false
         AppenderRef:
           - ref: Console_Appender

@@ -1,4 +1,4 @@
-package com.ss.springbootgo.springboot_test.converter;
+package com.ss.springbootgo.springboot_test.component.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,7 @@ public class LocalDateConverter implements Converter<String, LocalDate> {
 
     @Override
     public LocalDate convert(String source) {
+
         return LocalDate.parse(source, DateTimeFormatter.ofPattern("d-M-yyyy"));
     }
 }

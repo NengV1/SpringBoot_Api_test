@@ -1,4 +1,4 @@
-package com.ss.springbootgo.springboot_test.converter;
+package com.ss.springbootgo.springboot_test.component.converter;
 
 
 import com.ss.springbootgo.springboot_test.entity.Product;

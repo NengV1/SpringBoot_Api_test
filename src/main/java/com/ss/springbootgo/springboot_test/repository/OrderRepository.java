@@ -1,4 +1,7 @@
 package com.ss.springbootgo.springboot_test.repository;
 
-public class OrderRepository {
+import com.ss.springbootgo.springboot_test.entity.Order;
+import com.ss.springbootgo.springboot_test.entity.OrderId;
+
+public interface  OrderRepository  extends CommonRepository<Order, OrderId>  {
 }

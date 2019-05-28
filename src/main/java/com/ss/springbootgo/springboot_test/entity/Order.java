@@ -2,22 +2,33 @@ package com.ss.springbootgo.springboot_test.entity;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 
 @Data
-//@IdClass(OrderId.class)
-@Entity(name="orders")
-public class Order {
-
-    private int qty;
-
-    @AttributeOverrides(value = {
-            @AttributeOverride(name = "id", column = @Column(name="o_id")),
-            @AttributeOverride(name = "productId", column = @Column(name="p_id"))
-    })
+@Entity(name = "orders")
+@EqualsAndHashCode(callSuper = false)
+@DynamicInsert
+@DynamicUpdate
+public class Order extends Common {
 
     @EmbeddedId
     private OrderId orderId;
+
+    private int quantity;
+
+    @Lob
+    private String details;
+
+    @Lob
+    @Nationalized
+    private String nationalDetails;
+
+    @Lob
+    private byte[] photos;
 
 }

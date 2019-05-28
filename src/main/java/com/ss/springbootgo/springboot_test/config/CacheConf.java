@@ -3,6 +3,7 @@ package com.ss.springbootgo.springboot_test.config;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.cache.annotation.EnableCaching;
@@ -10,7 +11,7 @@ import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.scheduling.annotation.Scheduled;
 import java.time.Duration;
 import java.util.Arrays;
 
@@ -18,7 +19,7 @@ import java.util.Arrays;
 @Configuration
 @EnableCaching
 @RequiredArgsConstructor
-public class ProductCacheConf {
+public class CacheConf {
 
     @Bean
     public SimpleCacheManager buildSimpleCacheManager() {
@@ -30,6 +31,7 @@ public class ProductCacheConf {
         return simpleCacheManager;
     }
 
+
     private CaffeineCache buildCaffeineCache(String name, long maxSize) {
         log.info(() -> "Build CaffeineCache[" + name + "] , maximumSize[" + maxSize + "]");
         return new CaffeineCache(name, Caffeine.newBuilder()
@@ -39,7 +41,7 @@ public class ProductCacheConf {
                 .expireAfterWrite(Duration.ofHours(24))
                 .build());
     }
-
+    @Scheduled(cron = "0 0 0 * * *")
     @Caching(evict = {
             @CacheEvict(cacheNames = CacheName.PRODUCTS, allEntries = true),
             @CacheEvict(cacheNames = CacheName.PRODUCT, allEntries = true)
